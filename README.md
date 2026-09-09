@@ -926,3 +926,67 @@ if(window.lucide) lucide.createIcons();
   </script>
  </body>
 </html>
+<script>
+  // Daftar pertanyaan teka-teki
+  const daftarSoal = [
+    {
+      pertanyaan: "Benda apa yang kalau dipotong malah jadi lebih tinggi?",
+      pilihan: ["Celana", "Pohon", "Rumput", "Pensil"],
+      jawaban: 0 // Indeks 0 = Celana
+    },
+    {
+      pertanyaan: "Makin diisi, makin ringan. Apakah itu?",
+      pilihan: ["Balon gas", "Ember", "Karung", "Dompet"],
+      jawaban: 0 // Indeks 0 = Balon gas
+    },
+    {
+      pertanyaan: "Apa yang selalu datang tapi tidak pernah tiba?",
+      pilihan: ["Hujan", "Besok", "Tamu", "Pak paket"],
+      jawaban: 1 // Indeks 1 = Besok
+    },
+    {
+      pertanyaan: "Punya banyak gigi tapi tidak bisa menggigit?",
+      pilihan: ["Hiu", "Sisir", "Gergaji", "Roda gigi"],
+      jawaban: 1 // Indeks 1 = Sisir
+    }
+  ];
+
+  let indexSekarang = 0;
+
+  // Fungsi untuk menampilkan soal
+  function tampilkanSoal() {
+    const soal = daftarSoal[indexSekarang];
+    
+    // Ganti 'element-pertanyaan' dengan ID elemen tempat teks soal kamu
+    document.getElementById("teks-soal").innerText = soal.pertanyaan;
+    
+    // Tampilkan pilihan jawaban ke tombol
+    soal.pilihan.forEach((teks, i) => {
+      document.getElementById(`btn-${i}`).innerText = teks;
+    });
+  }
+
+  // Fungsi saat tombol jawaban diklik
+  function pilihJawaban(indexPilihan) {
+    if (indexPilihan === daftarSoal[indexSekarang].jawaban) {
+      alert("Jawaban Benar! 🎉");
+    } else {
+      alert("Jawaban Salah! ❌");
+    }
+
+    // Pindah ke soal berikutnya
+    indexSekarang++;
+
+    if (indexSekarang < daftarSoal.length) {
+      tampilkanSoal(); // Muat soal baru
+    } else {
+      alert("Kuis Selesai! Kamu hebat!");
+      indexSekarang = 0; // Ulangi dari awal
+      tampilkanSoal();
+    }
+  }
+
+  // Jalankan pertama kali
+  tampilkanSoal();
+</script>
+
